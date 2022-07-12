@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Assi.core.Service;
+using Assignment.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,35 @@ namespace Assignment.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
+        private readonly ITaskApiService TaskapiService;
+        public TaskController(ITaskApiService TaskapiService)
+        {
+            this.TaskapiService = TaskapiService;
+
+        }
+        [HttpDelete("delete/{id}")] //delete record from database
+        public string delete(int id)
+        {
+
+            return TaskapiService.delete(id);
+        }
+        [HttpGet]//retrevie all data
+        public List<Taskapi> Dep()
+        {
+            return TaskapiService.getall();
+        }
+
+        [HttpPost]//insert new record in database
+        public string create([FromBody] Taskapi Taskapi)
+        {
+
+            return TaskapiService.insert(Taskapi);
+        }
+        [HttpPut] //update
+        public string update([FromBody] Taskapi Taskapi)
+        {
+
+            return TaskapiService.update(Taskapi);
+        }
     }
 }

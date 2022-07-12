@@ -1,4 +1,5 @@
-﻿using Assi.core.Service;
+﻿using Assi.core.Repository;
+using Assi.core.Service;
 using Assignment.Data;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,29 @@ namespace Assi.infra.Service
 {
     public class CheckEmpService : ICheckEmpService
     {
+        private readonly ICheckEmpRepository repo;
+        public CheckEmpService(ICheckEmpRepository repo)
+        {
+            this.repo = repo;
+        }
         public string delete(int id)
         {
-            throw new NotImplementedException();
+            return repo.delete(id);
         }
 
         public List<Checkemp> getall()
         {
-            throw new NotImplementedException();
+            return repo.getall();
         }
 
         public string insert(Checkemp checkemp)
         {
-            throw new NotImplementedException();
+            return repo.insert(checkemp);
         }
 
         public string update(Checkemp checkemp)
         {
-            throw new NotImplementedException();
+            return repo.update(checkemp);
         }
     }
 }

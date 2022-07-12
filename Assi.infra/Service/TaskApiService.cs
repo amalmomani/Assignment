@@ -1,4 +1,5 @@
-﻿using Assi.core.Service;
+﻿using Assi.core.Repository;
+using Assi.core.Service;
 using Assignment.Data;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,29 @@ namespace Assi.infra.Service
 {
     public class TaskApiService : ITaskApiService
     {
+        private readonly ITaskApiRepository repo;
+        public TaskApiService(ITaskApiRepository repo)
+        {
+            this.repo = repo;
+        }
         public string delete(int id)
         {
-            throw new NotImplementedException();
+            return repo.delete(id);
         }
 
         public List<Taskapi> getall()
         {
-            throw new NotImplementedException();
+            return repo.getall();
         }
 
         public string insert(Taskapi taskapi)
         {
-            throw new NotImplementedException();
+            return repo.insert(taskapi);
         }
 
         public string update(Taskapi taskapi)
         {
-            throw new NotImplementedException();
+            return repo.update(taskapi);
         }
     }
 }

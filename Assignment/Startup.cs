@@ -32,9 +32,24 @@ namespace Assignment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDBContext, DbContext>();
-            services.AddScoped<ICheckApiRepository, CheckApiRepository>();
 
-            services.AddScoped<ICheckapiService, CheckApiService>();
+            services.AddScoped<ICheckApiRepository, CheckApiRepository>();
+            services.AddScoped<ICheckapiService, CheckApiService>(); 
+
+            services.AddScoped<IEmpApiRepository, EmpApiRepository>();
+            services.AddScoped<IEmpApiService, EmpApiService>();
+
+            services.AddScoped<ICheckEmpRepository, CheckEmpRepository>();
+            services.AddScoped<ICheckEmpService, CheckEmpService>();
+
+            services.AddScoped<ITaskApiRepository, TaskApiRepository>();
+            services.AddScoped<ITaskApiService, TaskApiService>();
+
+            services.AddScoped<IDepApiRepository, DepApiRepository>();
+            services.AddScoped<IDepApiService, DepApiService>();
+
+            services.AddScoped<IEmpTaskRepository, EmpTaskRepository>();
+            services.AddScoped<IEmpTaskService, EmpTaskService>();
 
             services.AddControllers();
         }

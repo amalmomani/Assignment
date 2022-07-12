@@ -1,4 +1,5 @@
-﻿using Assi.core.Service;
+﻿using Assi.core.Repository;
+using Assi.core.Service;
 using Assignment.Data;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,29 @@ namespace Assi.infra.Service
 {
     public class EmpTaskService : IEmpTaskService
     {
+        private readonly IEmpTaskRepository repo;
+        public EmpTaskService(IEmpTaskRepository repo)
+        {
+            this.repo = repo;
+        }
         public string delete(int id)
         {
-            throw new NotImplementedException();
+            return repo.delete(id);
         }
 
         public List<Emptask> getall()
         {
-            throw new NotImplementedException();
+            return repo.getall();
         }
 
         public string insert(Emptask emptask)
         {
-            throw new NotImplementedException();
+            return repo.insert(emptask);
         }
 
         public string update(Emptask emptask)
         {
-            throw new NotImplementedException();
+            return repo.update(emptask);
         }
     }
 }

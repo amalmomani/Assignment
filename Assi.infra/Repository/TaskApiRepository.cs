@@ -5,6 +5,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Assi.infra.Repository
@@ -19,33 +20,39 @@ namespace Assi.infra.Repository
         public string delete(int id)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("idofcategory", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("idofTaskApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-
-            var result = dbContext.dBConnection.ExecuteAsync("category_package_api.deletecategory", parameter, commandType: CommandType.StoredProcedure);
+            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.deleteTaskApi", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
-            {
-                return "";
-            }
+                return "Something went wrong";
             else
-            {
-                return "";
-            }
+                return "Deleted!";
         }
 
         public List<Taskapi> getall()
         {
-            throw new NotImplementedException();
+            IEnumerable<Taskapi> result = dbContext.dBConnection.Query<Taskapi>("TaskApi_package_api.getallTaskApi", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
         public string insert(Taskapi taskapi)
         {
-            throw new NotImplementedException();
+            var paramenter = new DynamicParameters();
+            paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.createinsertTaskApi", paramenter, commandType: CommandType.StoredProcedure);
+            return "Task: " + taskapi.Taskname + ", inserted!";
         }
 
         public string update(Taskapi taskapi)
         {
-            throw new NotImplementedException();
+            var paramenter = new DynamicParameters();
+            paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.UpdateTaskApi", paramenter, commandType: CommandType.StoredProcedure);
+            return "Task: " + taskapi.Taskname + ", updated!";
         }
     }
 }

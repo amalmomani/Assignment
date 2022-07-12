@@ -20,18 +20,14 @@ namespace Assi.infra.Repository
         public string delete(int id)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("idofcategory", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("idofDepApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
-            var result = dbContext.dBConnection.ExecuteAsync("category_package_api.deletecategory", parameter, commandType: CommandType.StoredProcedure);
+            var result = dbContext.dBConnection.ExecuteAsync("DepApi_package_api.deleteDepApi", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
-            {
-                return "";
-            }
+                return "Something went wrong";
             else
-            {
-                return "";
-            }
+                return "Deleted!";
         }
 
         public List<Depapi> getall()
@@ -42,12 +38,25 @@ namespace Assi.infra.Repository
 
         public string insert(Depapi depapi)
         {
-            return "";
+            var paramenter = new DynamicParameters();
+            paramenter.Add("idofDepApi", depapi.Depid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("nameofDepApi", depapi.Depname, dbType: DbType.String, direction: ParameterDirection.Input);
+            paramenter.Add("phoneOfDepApi", depapi.Depphone, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            var result = dbContext.dBConnection.ExecuteAsync("DepApi_package_api.createinsertDepApi", paramenter, commandType: CommandType.StoredProcedure);
+            return "Department name: " + depapi.Depname + "|| Department phone: " + depapi.Depphone + ", inserted!";
         }
 
         public string update(Depapi depapi)
         {
-            throw new NotImplementedException();
+            var paramenter = new DynamicParameters();
+            paramenter.Add("idofDepApi", depapi.Depid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("nameofDepApi", depapi.Depname, dbType: DbType.String, direction: ParameterDirection.Input);
+            paramenter.Add("phoneOfDepApi", depapi.Depphone, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            var result = dbContext.dBConnection.ExecuteAsync("DepApi_package_api.UpdateDepApi", paramenter, commandType: CommandType.StoredProcedure);
+            return "Department name: " + depapi.Depname + "|| Department phone: " + depapi.Depphone + ", updated!";
+
         }
     }
 }

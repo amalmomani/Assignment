@@ -38,7 +38,7 @@ namespace Assignment.Controllers
             return checkapiService.insert(checkapi);
         }
         [HttpPut] //update
-        public string updatecourse([FromBody] Checkapi checkapi)
+        public string update([FromBody] Checkapi checkapi)
         {
 
             return checkapiService.update(checkapi);

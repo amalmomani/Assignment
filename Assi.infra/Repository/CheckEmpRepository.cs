@@ -38,24 +38,24 @@ namespace Assi.infra.Repository
         public string insert(Checkemp checkemp)
         {
             var paramenter = new DynamicParameters();
-            paramenter.Add("idOfCheckEmp", checkemp.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("idofCheckEmp", checkemp.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             paramenter.Add("emp", checkemp.Empid, dbType: DbType.Int32, direction: ParameterDirection.Input);
             paramenter.Add("checkk", checkemp.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = dbContext.dBConnection.ExecuteAsync("CheckEmp_package_api.createinsertCheckEmp", paramenter, commandType: CommandType.StoredProcedure);
-            return "EmpId: " + checkemp.Empid + " CheckId: " + checkemp.Checkid +" inserted!";
+            return "EmpId: " + checkemp.Empid + "|| CheckId: " + checkemp.Checkid +", inserted!";
 
         }
 
         public string update(Checkemp checkemp)
         {
             var paramenter = new DynamicParameters();
-            paramenter.Add("idOfCheckEmp", checkemp.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            paramenter.Add("idofCheckEmp", checkemp.Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             paramenter.Add("emp", checkemp.Empid, dbType: DbType.Int32, direction: ParameterDirection.Input);
             paramenter.Add("checkk", checkemp.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = dbContext.dBConnection.ExecuteAsync("CheckEmp_package_api.UpdateCheckEmp", paramenter, commandType: CommandType.StoredProcedure);
-            return "EmpId: " + checkemp.Empid + " CheckId: " + checkemp.Checkid + " updated!";
+            return "EmpId: " + checkemp.Empid + "|| CheckId: " + checkemp.Checkid + ", updated!";
         }
     }
 }
