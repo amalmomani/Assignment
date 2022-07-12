@@ -1,3 +1,9 @@
+using Assi.core.domain;
+using Assi.core.Repository;
+using Assi.core.Service;
+using Assi.infra.domain;
+using Assi.infra.Repository;
+using Assi.infra.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +31,11 @@ namespace Assignment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDBContext, DbContext>();
+            services.AddScoped<ICheckApiRepository, CheckApiRepository>();
+
+            services.AddScoped<ICheckapiService, CheckApiService>();
+
             services.AddControllers();
         }
 

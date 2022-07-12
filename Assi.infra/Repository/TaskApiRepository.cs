@@ -25,11 +25,11 @@ namespace Assi.infra.Repository
             var result = dbContext.dBConnection.ExecuteAsync("category_package_api.deletecategory", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
             {
-                return false;
+                return "";
             }
             else
             {
-                return true;
+                return "";
             }
         }
 

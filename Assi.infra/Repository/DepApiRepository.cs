@@ -5,6 +5,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Assi.infra.Repository
@@ -35,12 +36,13 @@ namespace Assi.infra.Repository
 
         public List<Depapi> getall()
         {
-            throw new NotImplementedException();
+            IEnumerable<Depapi> result = dbContext.dBConnection.Query<Depapi>("DepApi_package_api.getallDepApi", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
         public string insert(Depapi depapi)
         {
-            throw new NotImplementedException();
+            return "";
         }
 
         public string update(Depapi depapi)

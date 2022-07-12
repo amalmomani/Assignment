@@ -1,5 +1,6 @@
 ﻿using Assi.core.domain;
 using Assi.core.Repository;
+using Assi.core.Service;
 using Assignment.Data;
 using Dapper;
 using System;
@@ -10,10 +11,10 @@ using System.Text;
 
 namespace Assi.infra.Repository
 {
-    public class CheckApiService : ICheckApiService
+    public class CheckApiRepository : ICheckApiRepository
     {
         private readonly IDBContext dbContext;
-        public CheckApiService(IDBContext dbContext)
+        public CheckApiRepository(IDBContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -21,7 +22,6 @@ namespace Assi.infra.Repository
         {
             var parameter = new DynamicParameters();
             parameter.Add("idofCheckApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
 
             var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.deleteCheckApi", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assi.core.Repository
 {
-    public interface ICheckApiService
+    public interface ICheckApiRepository
     {
         public string insert(Checkapi checkapi);
         public string update(Checkapi checkapi);
