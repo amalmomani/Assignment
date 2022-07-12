@@ -8,7 +8,7 @@ namespace Assi.infra.Service
 {
     public class EmpTaskService : IEmpTaskService
     {
-        public bool delete(int id)
+        public string delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace Assi.infra.Service
             throw new NotImplementedException();
         }
 
-        public bool insert(Emptask emptask)
+        public string insert(Emptask emptask)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Emptask emptask)
+        public string update(Emptask emptask)
         {
             throw new NotImplementedException();
         }

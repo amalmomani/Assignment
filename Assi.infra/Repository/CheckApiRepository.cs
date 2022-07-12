@@ -5,6 +5,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Assi.infra.Repository
@@ -16,36 +17,50 @@ namespace Assi.infra.Repository
         {
             this.dbContext = dbContext;
         }
-        public bool delete(int id)
+        public string delete(int id)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("idofcategory", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("idofCheckApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
-            var result = dbContext.dBConnection.ExecuteAsync("category_package_api.deletecategory", parameter, commandType: CommandType.StoredProcedure);
+            var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.deleteCheckApi", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
             {
-                return false;
+                return "Something went wrong!";
             }
             else
             {
-                return true;
+                return "Deleted";
             }
         }
 
         public List<Checkapi> getall()
         {
-            throw new NotImplementedException();
+            IEnumerable<Checkapi> result = dbContext.dBConnection.Query<Checkapi>("CheckApi_package_api.getallCheckApi", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
-        public bool insert(Checkapi checkapi)
+        public string insert(Checkapi checkapi)
         {
-            throw new NotImplementedException();
+            var parameter = new DynamicParameters();
+            parameter.Add("idOfCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+
+
+            var result = dbContext.dBConnection.ExecuteAsync("checkApi_package_api.createinsertcheckApi", parameter, commandType: CommandType.StoredProcedure);
+            return "Checkin: " + checkapi.Checkin + "checkout: " + checkapi.Checkout + "inserted!";
         }
 
-        public bool update(Checkapi checkapi)
+        public string update(Checkapi checkapi)
         {
-            throw new NotImplementedException();
+            var parameter = new DynamicParameters();
+            parameter.Add("idOfCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+
+            var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.updatecheckApi", parameter, commandType: CommandType.StoredProcedure);
+            return "Checkin: " + checkapi.Checkin + "checkout: " + checkapi.Checkout + "Updated!";
         }
     }
 }

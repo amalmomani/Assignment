@@ -8,7 +8,7 @@ namespace Assi.infra.Service
 {
     public class TaskApiService : ITaskApiService
     {
-        public bool delete(int id)
+        public string delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace Assi.infra.Service
             throw new NotImplementedException();
         }
 
-        public bool insert(Taskapi taskapi)
+        public string insert(Taskapi taskapi)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Taskapi taskapi)
+        public string update(Taskapi taskapi)
         {
             throw new NotImplementedException();
         }

@@ -7,10 +7,10 @@ namespace Assi.core.Repository
 {
     public interface ICheckApiService
     {
-        public bool insert(Checkapi checkapi);
-        public bool update(Checkapi checkapi);
+        public string insert(Checkapi checkapi);
+        public string update(Checkapi checkapi);
 
-        public bool delete(int id);
+        public string delete(int id);
 
         public List<Checkapi> getall();
     }

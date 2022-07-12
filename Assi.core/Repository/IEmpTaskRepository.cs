@@ -7,10 +7,10 @@ namespace Assi.core.Repository
 {
     public interface IEmpTaskRepository
     {
-        public bool insert(Emptask emptask);
-        public bool update(Emptask emptask);
+        public string insert(Emptask emptask);
+        public string update(Emptask emptask);
 
-        public bool delete(int id);
+        public string delete(int id);
 
         public List<Emptask> getall();
     }

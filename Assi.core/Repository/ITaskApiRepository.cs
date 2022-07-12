@@ -7,10 +7,10 @@ namespace Assi.core.Repository
 {
     public interface ITaskApiRepository
     {
-        public bool insert(Taskapi taskapi);
-        public bool update(Taskapi taskapi );
+        public string insert(Taskapi taskapi);
+        public string update(Taskapi taskapi );
 
-        public bool delete(int id);
+        public string delete(int id);
 
         public List<Taskapi> getall();
     }

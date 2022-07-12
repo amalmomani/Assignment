@@ -8,7 +8,7 @@ namespace Assi.infra.Service
 {
     public class CheckApiService : ICheckapiService
     {
-        public bool delete(int id)
+        public string delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace Assi.infra.Service
             throw new NotImplementedException();
         }
 
-        public bool insert(Checkapi checkapi)
+        public string insert(Checkapi checkapi)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Checkapi checkapi)
+        public string update(Checkapi checkapi)
         {
             throw new NotImplementedException();
         }

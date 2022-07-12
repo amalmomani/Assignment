@@ -16,7 +16,7 @@ namespace Assi.infra.Repository
         {
             this.dbContext = dbContext;
         }
-        public bool delete(int id)
+        public string delete(int id)
         {
             var parameter = new DynamicParameters();
             parameter.Add("idofcategory", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
@@ -38,12 +38,12 @@ namespace Assi.infra.Repository
             throw new NotImplementedException();
         }
 
-        public bool insert(Taskapi taskapi)
+        public string insert(Taskapi taskapi)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Taskapi taskapi)
+        public string update(Taskapi taskapi)
         {
             throw new NotImplementedException();
         }

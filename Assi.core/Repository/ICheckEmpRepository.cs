@@ -7,10 +7,10 @@ namespace Assi.core.Repository
 {
     public interface ICheckEmpRepository
     {
-        public bool insert(Checkemp checkemp);
-        public bool update(Checkemp checkemp);
+        public string insert(Checkemp checkemp);
+        public string update(Checkemp checkemp);
 
-        public bool delete(int id);
+        public string delete(int id);
 
         public List<Checkemp> getall();
     }

@@ -8,7 +8,7 @@ namespace Assi.infra.Service
 {
     public class DepApiService : IDepApiService
     {
-        public bool delete(int id)
+        public string delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace Assi.infra.Service
             throw new NotImplementedException();
         }
 
-        public bool insert(Depapi depapi)
+        public string insert(Depapi depapi)
         {
             throw new NotImplementedException();
         }
 
-        public bool update(Depapi depapi)
+        public string update(Depapi depapi)
         {
             throw new NotImplementedException();
         }

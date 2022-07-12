@@ -7,10 +7,10 @@ namespace Assi.core.Service
 {
     public interface IDepApiService
     {
-        public bool insert(Depapi depapi);
-        public bool update(Depapi depapi);
+        public string insert(Depapi depapi);
+        public string update(Depapi depapi);
 
-        public bool delete(int id);
+        public string delete(int id);
 
         public List<Depapi> getall();
     }
