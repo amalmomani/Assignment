@@ -43,6 +43,10 @@ namespace Assignment.Controllers
 
             return CheckEmpService.update(CheckEmp);
         }
-
+        [HttpGet("filter")] //delete record from database
+        public List<string> Filter([FromBody]Checkapi checkapi)
+        {
+            return CheckEmpService.FilterDate(checkapi);
+        }
     }
 }

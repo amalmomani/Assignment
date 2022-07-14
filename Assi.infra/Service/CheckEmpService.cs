@@ -33,5 +33,9 @@ namespace Assi.infra.Service
         {
             return repo.update(checkemp);
         }
+        public List<string> FilterDate(Checkapi checkapi)
+        {
+            return repo.FilterDate(checkapi);
+        } 
     }
 }

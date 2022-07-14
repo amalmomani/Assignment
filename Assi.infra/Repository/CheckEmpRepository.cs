@@ -1,4 +1,5 @@
 ﻿using Assi.core.domain;
+using Assi.core.DTO;
 using Assi.core.Repository;
 using Assignment.Data;
 using Dapper;
@@ -56,6 +57,21 @@ namespace Assi.infra.Repository
 
             var result = dbContext.dBConnection.ExecuteAsync("CheckEmp_package_api.UpdateCheckEmp", paramenter, commandType: CommandType.StoredProcedure);
             return "EmpId: " + checkemp.Empid + "|| CheckId: " + checkemp.Checkid + ", updated!";
+        }
+        public List<string> FilterDate(Checkapi checkapi)
+        {
+            var paramenter = new DynamicParameters();
+            paramenter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            paramenter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+
+            IEnumerable<CheckDateDTO> result = dbContext.dBConnection.Query<CheckDateDTO>("CheckEmp_package_api.filterCheckDate", paramenter,commandType: System.Data.CommandType.StoredProcedure);
+            List<string> r = new List<string>();
+            List<CheckDateDTO> resultt = result.ToList();
+            foreach (var item in resultt)
+            {
+                r.Add("Name: " + item.Employee + " || Email: " + item.Email + "|| Checkin: " + item.Checkin + "|| Checkout: " + item.Checkout + ".");
+            }
+            return r;
         }
     }
 }
