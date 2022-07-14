@@ -43,5 +43,38 @@ namespace Assignment.Controllers
 
             return EmpApiService.update(EmpApi);
         }
+
+        [HttpGet("getinfo")] //delete record from database
+        public List<string> getinfo()
+        {
+
+            return EmpApiService.getNameSalarydep();
+        }
+        [HttpGet("emptask")] //delete record from database
+        public List<string> emptask()
+        {
+
+            return EmpApiService.getNameTask();
+        }
+        [HttpGet("count")] //delete record from database
+        public string count()
+        {
+
+            return EmpApiService.count();
+        }
+        [HttpGet("sum")] //delete record from database
+        public string sum()
+        {
+
+            return EmpApiService.sum();
+        }
+        [HttpGet("avg")] //delete record from database
+        public string avg()
+        {
+
+            return EmpApiService.avg();
+        }
+
+
     }
 }

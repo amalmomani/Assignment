@@ -30,7 +30,16 @@ namespace Assignment.Controllers
         {
             return TaskapiService.getall();
         }
-
+        [HttpGet("{id}")] // retrive data by id
+        public Taskapi Dep(int id)
+        {
+            return TaskapiService.getbyid(id);
+        }
+        [HttpGet("getId")] // retrive data by id
+        public Taskapi getId([FromBody] int id)
+        {
+            return TaskapiService.getbyid(id);
+        }
         [HttpPost]//insert new record in database
         public string create([FromBody] Taskapi Taskapi)
         {
@@ -43,5 +52,7 @@ namespace Assignment.Controllers
 
             return TaskapiService.update(Taskapi);
         }
+
+       
     }
 }

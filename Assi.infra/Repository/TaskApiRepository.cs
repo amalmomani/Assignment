@@ -54,5 +54,14 @@ namespace Assi.infra.Repository
             var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.UpdateTaskApi", paramenter, commandType: CommandType.StoredProcedure);
             return "Task: " + taskapi.Taskname + ", updated!";
         }
+
+        public Taskapi getbyid(int id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("idofTaskApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            IEnumerable<Taskapi> result = dbContext.dBConnection.Query<Taskapi>("TaskApi_package_api.getById", parameter, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+        }
     }
 }

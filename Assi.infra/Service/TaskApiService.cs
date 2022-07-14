@@ -33,5 +33,9 @@ namespace Assi.infra.Service
         {
             return repo.update(taskapi);
         }
+        public Taskapi getbyid(int id)
+        {
+            return repo.getbyid(id);
+        }
     }
 }

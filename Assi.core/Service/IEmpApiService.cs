@@ -13,5 +13,10 @@ namespace Assi.core.Service
         public string delete(int id);
 
         public List<Empapi> getall();
+        public List<string> getNameSalarydep();
+        public List<string> getNameTask();
+        public string count();
+        public string sum();
+        public string avg();
     }
 }

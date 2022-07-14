@@ -24,6 +24,15 @@ namespace Assi.infra.Service
             return repo.getall();
         }
 
+        public List<string> getNameSalarydep()
+        {
+            return repo.getNameSalarydep();
+        }
+        public List<string> getNameTask()
+        {
+            return repo.getNameTask();
+        }
+
         public string insert(Empapi empapi)
         {
             return repo.insert(empapi);
@@ -32,6 +41,18 @@ namespace Assi.infra.Service
         public string update(Empapi empapi)
         {
             return repo.update(empapi);
+        }
+        public string count()
+        {
+            return repo.count();
+        }
+        public string sum()
+        {
+            return repo.sum();
+        }
+        public string avg()
+        {
+            return repo.avg();
         }
     }
 }
