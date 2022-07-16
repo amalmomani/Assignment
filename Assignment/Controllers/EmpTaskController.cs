@@ -20,28 +20,41 @@ namespace Assignment.Controllers
 
         }
         [HttpDelete("delete/{id}")] //delete record from database
-        public string delete(int id)
+        public ActionResult delete(int id)
         {
-
-            return EmpTaskService.delete(id);
+            string result = null;
+            result = this.EmpTaskService.delete(id);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public List<Emptask> Dep()
+        public ActionResult Dep()
         {
-            return EmpTaskService.getall();
+            List<Emptask> result = null;
+            result = this.EmpTaskService.getall();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
 
         [HttpPost]//insert new record in database
-        public string create([FromBody] Emptask EmpTask)
+        public ActionResult create([FromBody] Emptask EmpTask)
         {
-
-            return EmpTaskService.insert(EmpTask);
+            string result = null;
+            result = this.EmpTaskService.insert(EmpTask);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpPut] //update
-        public string update([FromBody] Emptask EmpTask)
+        public ActionResult update([FromBody] Emptask EmpTask)
         {
-
-            return EmpTaskService.update(EmpTask);
+            string result = null;
+            result = this.EmpTaskService.update(EmpTask);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
     }
 }

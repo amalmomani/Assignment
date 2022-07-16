@@ -20,37 +20,58 @@ namespace Assignment.Controllers
 
         }
         [HttpDelete("delete/{id}")] //delete record from database
-        public string delete(int id)
+        public ActionResult delete(int id)
         {
-
-            return TaskapiService.delete(id);
+            string result = null;
+            result = this.TaskapiService.delete(id);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public List<Taskapi> Dep()
+        public ActionResult Dep()
         {
-            return TaskapiService.getall();
+            List<Taskapi> result = null;
+            result = this.TaskapiService.getall();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpGet("{id}")] // retrive data by id
-        public Taskapi Dep(int id)
+        public ActionResult Dep(int id)
         {
-            return TaskapiService.getbyid(id);
+            Taskapi result = null;
+            result = this.TaskapiService.getbyid(id);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpGet("getId")] // retrive data by id
-        public Taskapi getId([FromBody] int id)
+        public ActionResult getId([FromBody] int id)
         {
-            return TaskapiService.getbyid(id);
+            Taskapi result = null;
+            result = this.TaskapiService.getbyid(id);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpPost]//insert new record in database
-        public string create([FromBody] Taskapi Taskapi)
+        public ActionResult create([FromBody] Taskapi Taskapi)
         {
-
-            return TaskapiService.insert(Taskapi);
+            string result = null;
+            result = this.TaskapiService.insert(Taskapi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpPut] //update
-        public string update([FromBody] Taskapi Taskapi)
+        public ActionResult update([FromBody] Taskapi Taskapi)
         {
-
-            return TaskapiService.update(Taskapi);
+            string result = null;
+            result = this.TaskapiService.update(Taskapi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
 
        

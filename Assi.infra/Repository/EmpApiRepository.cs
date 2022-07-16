@@ -74,6 +74,17 @@ namespace Assi.infra.Repository
             }
             return r;
         }
+        public string Salary()
+        {
+            IEnumerable<SalaryDTO> result = dbContext.dBConnection.Query<SalaryDTO>("getInfo.salaries", commandType: System.Data.CommandType.StoredProcedure);
+            List<string> r = new List<string>();
+            List<SalaryDTO> resultt = result.ToList();
+            foreach (var item in resultt)
+            {
+                r.Add("Count: " + item.count + " || Sum: " + item.sum + "|| Average: " + item.avg + ". ");
+            }
+            return r.FirstOrDefault();
+        }
         public List<string> getNameTask()
         {
             IEnumerable<EmpTaskDTO> result = dbContext.dBConnection.Query<EmpTaskDTO>("getInfo.getNameTask", commandType: System.Data.CommandType.StoredProcedure);
@@ -112,6 +123,54 @@ namespace Assi.infra.Repository
                 sum += (int)item.Salary;
             }
             return "Employees salaries average= " + sum/r.Count();
+        }
+        public List<string> FilterName(string name)
+        {
+            var paramenter = new DynamicParameters();
+            paramenter.Add("name", name, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            IEnumerable<Empapi> result = dbContext.dBConnection.Query<Empapi>("EmpApi_package_api.FilterName",paramenter, commandType: System.Data.CommandType.StoredProcedure);
+            List<string> r = new List<string>();
+            List<Empapi> resultt = result.ToList();
+            foreach (var item in resultt)
+            {
+                r.Add("Name: " + item.Empname + " || Salary: " + item.Salary +". ");
+            }
+            return r;
+        }
+        public string EmailExist(string email)
+        {
+            var paramenter = new DynamicParameters();
+            paramenter.Add("email", email, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            IEnumerable<Empapi> result = dbContext.dBConnection.Query<Empapi>("getInfo.email", paramenter,commandType: System.Data.CommandType.StoredProcedure);
+            
+            if (result.Count() !=0 )
+                return "Exist";
+            else
+                return "Not exist";
+        }
+        public List<string> DotCom()
+        {
+            IEnumerable<Empapi> result = dbContext.dBConnection.Query<Empapi>(".dotcom", commandType: CommandType.StoredProcedure);
+
+            List<string> r = new List<string>();
+            foreach(var item in result.ToList())
+            {
+                r.Add("Name: " + item.Empname + " || Email: " + item.Empemail + " || Salary: " + item.Salary + ". ");
+            }
+            return r;
+        }
+        public List<string> EmpDep()
+        {
+            IEnumerable<Empapi> result = dbContext.dBConnection.Query<Empapi>("EmpApi_package_api.getallEmpApi", commandType: CommandType.StoredProcedure);
+            List<string> r = new List<string>();
+            foreach(var item in result.ToList())
+            {
+                int count = result.ToList().Count(x => x.Depid == item.Depid);
+                r.Add("department "+ item.Depid + ": "+ count);
+            }
+            return r;
         }
     }
 }

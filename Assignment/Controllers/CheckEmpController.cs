@@ -20,33 +20,55 @@ namespace Assignment.Controllers
 
         }
         [HttpDelete("delete/{id}")] //delete record from database
-        public string delete(int id)
+        public ActionResult delete(int id)
         {
-
-            return CheckEmpService.delete(id);
+            string result = null;
+            result = this.CheckEmpService.delete(id);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public List<Checkemp> check()
+        public ActionResult check()
         {
-            return CheckEmpService.getall();
+            List<Checkemp> result = null;
+            result = this.CheckEmpService.getall();
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
 
         [HttpPost]//insert new record in database
-        public string create([FromBody] Checkemp CheckEmp)
+        public ActionResult create([FromBody] Checkemp CheckEmp)
         {
-
-            return CheckEmpService.insert(CheckEmp);
+            string result = null;
+            result = this.CheckEmpService.insert(CheckEmp);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
         [HttpPut] //update
-        public string update([FromBody] Checkemp CheckEmp)
+        public ActionResult update([FromBody] Checkemp CheckEmp)
         {
-
-            return CheckEmpService.update(CheckEmp);
+            string result = null;
+            result = this.CheckEmpService.update(CheckEmp);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
         [HttpGet("filter")] //delete record from database
-        public List<string> Filter([FromBody]Checkapi checkapi)
+        public ActionResult Filter([FromBody]Checkapi checkapi)
         {
-            return CheckEmpService.FilterDate(checkapi);
+            List<string> result = null;
+            result = this.CheckEmpService.FilterDate(checkapi);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
     }
 }

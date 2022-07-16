@@ -20,28 +20,39 @@ namespace Assignment.Controllers
 
         }
         [HttpDelete("delete/{id}")] //delete record from database
-        public string delete(int id)
+        public ActionResult delete(int id)
         {
-
-            return checkapiService.delete(id);
+            string result = null;
+            result = this.checkapiService.delete(id);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public List<Checkapi> check()
+        public ActionResult check()
         {
-            return checkapiService.getall();
+            List<Checkapi> result = checkapiService.getall();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
        
         [HttpPost]//insert new record in database
-        public string create([FromBody] Checkapi checkapi)
+        public ActionResult create([FromBody] Checkapi checkapi)
         {
-
-            return checkapiService.insert(checkapi);
+            string result = checkapiService.insert(checkapi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpPut] //update
-        public string update([FromBody] Checkapi checkapi)
+        public ActionResult update([FromBody] Checkapi checkapi)
         {
-
-            return checkapiService.update(checkapi);
+            string result = checkapiService.update(checkapi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
 
     }

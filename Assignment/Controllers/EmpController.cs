@@ -20,61 +20,133 @@ namespace Assignment.Controllers
 
         }
         [HttpDelete("delete/{id}")] //delete record from database
-        public string delete(int id)
+        public ActionResult delete(int id)
         {
-
-            return EmpApiService.delete(id);
+            string result = null;
+            result = this.EmpApiService.delete(id);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public List<Empapi> Dep()
+        public ActionResult Dep()
         {
-            return EmpApiService.getall();
+            List<Empapi> result = null;
+            result = this.EmpApiService.getall();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
 
         [HttpPost]//insert new record in database
-        public string create([FromBody] Empapi EmpApi)
+        public ActionResult create([FromBody] Empapi EmpApi)
         {
-
-            return EmpApiService.insert(EmpApi);
+            string result = null;
+            result = this.EmpApiService.insert(EmpApi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
         [HttpPut] //update
-        public string update([FromBody] Empapi EmpApi)
+        public ActionResult update([FromBody] Empapi EmpApi)
         {
-
-            return EmpApiService.update(EmpApi);
+            string result = null;
+            result = this.EmpApiService.update(EmpApi);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
 
-        [HttpGet("getinfo")] //delete record from database
-        public List<string> getinfo()
+        [HttpGet("getinfo")] 
+        public ActionResult getinfo()
         {
-
-            return EmpApiService.getNameSalarydep();
+            List<string> result = null;
+            result = this.EmpApiService.getNameSalarydep();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
-        [HttpGet("emptask")] //delete record from database
-        public List<string> emptask()
+        [HttpGet("filterName/{name}")] 
+        public ActionResult Name(string name)
         {
-
-            return EmpApiService.getNameTask();
+            List<string> result = null;
+            result = this.EmpApiService.FilterName(name);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
-        [HttpGet("count")] //delete record from database
-        public string count()
+        [HttpGet("emptask")] 
+        public ActionResult emptask()
         {
-
-            return EmpApiService.count();
+            List<string> result = null;
+            result = this.EmpApiService.getNameTask();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
-        [HttpGet("sum")] //delete record from database
-        public string sum()
+        [HttpGet("count")] 
+        public ActionResult count()
         {
-
-            return EmpApiService.sum();
+            string result = null;
+            result = this.EmpApiService.count();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
-        [HttpGet("avg")] //delete record from database
-        public string avg()
+        [HttpGet("sum")] 
+        public ActionResult sum()
         {
-
-            return EmpApiService.avg();
+            string result = null;
+            result = this.EmpApiService.sum();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
         }
-
+        [HttpGet("avg")] 
+        public ActionResult avg()
+        {
+            string result = null;
+            result = this.EmpApiService.avg();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
+        [HttpGet("salary")] 
+        public ActionResult salary()
+        {
+            string result = null;
+            result = this.EmpApiService.Salary();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
+        [HttpGet("email/{email}")] 
+        public ActionResult email(string email)
+        {
+            string result = null;
+            result = this.EmpApiService.EmailExist(email);
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
+        [HttpGet("dotcom")] 
+        public ActionResult dotcom()
+        {
+            List<string> result = null;
+            result = this.EmpApiService.DotCom();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
+        [HttpGet("empdep")]
+        public ActionResult EmpDep()
+        {
+            List<string> result = null;
+            result = this.EmpApiService.EmpDep();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
 
     }
 }

@@ -32,10 +32,18 @@ namespace Assi.infra.Service
         {
             return repo.getNameTask();
         }
+        public List<string> FilterName(string name)
+        {
+            return repo.FilterName(name);
+        }
 
         public string insert(Empapi empapi)
         {
             return repo.insert(empapi);
+        }
+        public string Salary()
+        {
+            return repo.Salary();
         }
 
         public string update(Empapi empapi)
@@ -54,5 +62,18 @@ namespace Assi.infra.Service
         {
             return repo.avg();
         }
+        public string EmailExist(string email)
+        {
+            return repo.EmailExist(email);
+        }
+        public List<string> DotCom()
+        {
+            return repo.DotCom();
+        }
+        public List<string> EmpDep()
+        {
+            return repo.EmpDep();
+        }
+
     }
 }
