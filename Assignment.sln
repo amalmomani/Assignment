@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment", "Assignment\Assignment.csproj", "{016E02E9-D8B8-4AE3-872A-FB82A39E2150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment", "Assignment\Assignment.csproj", "{016E02E9-D8B8-4AE3-872A-FB82A39E2150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assi.core", "Assi.core\Assi.core.csproj", "{50CE1917-931E-4ABE-9E11-2333AB7617B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assi.core", "Assi.core\Assi.core.csproj", "{50CE1917-931E-4ABE-9E11-2333AB7617B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assi.infra", "Assi.infra\Assi.infra.csproj", "{96CA2C92-4975-453D-ACE2-BD15EE85C507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assi.infra", "Assi.infra\Assi.infra.csproj", "{96CA2C92-4975-453D-ACE2-BD15EE85C507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

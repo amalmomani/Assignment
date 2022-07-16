@@ -33,5 +33,9 @@ namespace Assi.infra.Service
         {
             return repo.update(emptask);
         }
+        public List<string> CountNameTask()
+        {
+            return repo.CountNameTask();
+        }
     }
 }

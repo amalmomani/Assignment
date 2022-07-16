@@ -13,5 +13,7 @@ namespace Assi.core.Service
         public string delete(int id);
 
         public List<Emptask> getall();
+        public List<string> CountNameTask();
+
     }
 }

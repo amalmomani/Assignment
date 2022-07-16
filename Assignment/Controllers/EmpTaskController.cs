@@ -56,5 +56,14 @@ namespace Assignment.Controllers
                 return Ok(result);
             else return BadRequest();
         }
+        [HttpGet("countemptask")]
+        public ActionResult emptask()
+        {
+            List<string> result = null;
+            result = this.EmpTaskService.CountNameTask();
+            if (result != null)
+                return Ok(result);
+            else return BadRequest();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Assi.core.domain;
+using Assi.core.DTO;
 using Assi.core.Repository;
 using Assignment.Data;
 using Dapper;
@@ -54,6 +55,17 @@ namespace Assi.infra.Repository
             var result = dbContext.dBConnection.ExecuteAsync("EmpTask_package_api.UpdateEmpTask", paramenter, commandType: CommandType.StoredProcedure);
             return "Employee: " + emptask.Empid + "|| Task: " + emptask.Taskid + ", updated!";
 
+        }
+        public List<string> CountNameTask()
+        {
+            IEnumerable<EmpTaskDTO> result = dbContext.dBConnection.Query<EmpTaskDTO>("getInfo.CountEmpTask", commandType: System.Data.CommandType.StoredProcedure);
+            List<string> r = new List<string>();
+            List<EmpTaskDTO> resultt = result.ToList();
+            foreach (var item in resultt)
+            {
+                r.Add("Name: " + item.Name + " || Task: " + item.task + ". ");
+            }
+            return r;
         }
     }
 }
