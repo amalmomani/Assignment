@@ -19,14 +19,21 @@ namespace Assi.infra.Repository
         }
         public string delete(int id)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("idofTaskApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("idofTaskApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.deleteTaskApi", parameter, commandType: CommandType.StoredProcedure);
-            if (result == null)
-                return "Something went wrong";
-            else
-                return "Deleted!";
+                var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.deleteTaskApi", parameter, commandType: CommandType.StoredProcedure);
+                if (result == null)
+                    return "Something went wrong";
+                else
+                    return "Deleted!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public List<Taskapi> getall()
@@ -37,22 +44,36 @@ namespace Assi.infra.Repository
 
         public string insert(Taskapi taskapi)
         {
-            var paramenter = new DynamicParameters();
-            paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
+            try
+            {
+                var paramenter = new DynamicParameters();
+                paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.createinsertTaskApi", paramenter, commandType: CommandType.StoredProcedure);
-            return "Task: " + taskapi.Taskname + ", inserted!";
+                var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.createinsertTaskApi", paramenter, commandType: CommandType.StoredProcedure);
+                return "Task: " + taskapi.Taskname + ", inserted!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public string update(Taskapi taskapi)
         {
-            var paramenter = new DynamicParameters();
-            paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
+            try
+            {
+                var paramenter = new DynamicParameters();
+                paramenter.Add("idofTaskApi", taskapi.Taskid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                paramenter.Add("nameOfTask", taskapi.Taskname, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.UpdateTaskApi", paramenter, commandType: CommandType.StoredProcedure);
-            return "Task: " + taskapi.Taskname + ", updated!";
+                var result = dbContext.dBConnection.ExecuteAsync("TaskApi_package_api.UpdateTaskApi", paramenter, commandType: CommandType.StoredProcedure);
+                return "Task: " + taskapi.Taskname + ", updated!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public Taskapi getbyid(int id)

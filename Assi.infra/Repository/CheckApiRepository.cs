@@ -20,47 +20,67 @@ namespace Assi.infra.Repository
         }
         public string delete(int id)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("idofCheckApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("idofCheckApi", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
-            var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.deleteCheckApi", parameter, commandType: CommandType.StoredProcedure);
-            if (result == null)
-            {
-                return "Something went wrong!";
+                var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.deleteCheckApi", parameter, commandType: CommandType.StoredProcedure);
+                if (result == null)
+                {
+                    return "Something went wrong!";
+                }
+                else
+                {
+                    return "Deleted";
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return "Deleted";
+                return (ex.Message);
             }
         }
 
         public List<Checkapi> getall()
         {
             IEnumerable<Checkapi> result = dbContext.dBConnection.Query<Checkapi>("CheckApi_package_api.getallCheckApi", commandType: CommandType.StoredProcedure);
-            return result.ToList();
+            return result.ToList();           
         }
 
         public string insert(Checkapi checkapi)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("idofCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-            parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("idofCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+                parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
 
 
-            var result = dbContext.dBConnection.ExecuteAsync("checkApi_package_api.createinsertcheckApi", parameter, commandType: CommandType.StoredProcedure);
-            return "Checkin: " + checkapi.Checkin + "|| checkout: " + checkapi.Checkout + ", inserted!";
+                var result = dbContext.dBConnection.ExecuteAsync("checkApi_package_api.createinsertcheckApi", parameter, commandType: CommandType.StoredProcedure);
+                return "Checkin: " + checkapi.Checkin + "|| checkout: " + checkapi.Checkout + ", inserted!";
+            }
+            catch (Exception ex)
+            {
+                return (ex.Message);
+            }
         }
 
         public string update(Checkapi checkapi)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("idofCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-            parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            try {
+                var parameter = new DynamicParameters();
+                parameter.Add("idofCheckApi", checkapi.Checkid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                parameter.Add("checkinn", checkapi.Checkin, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+                parameter.Add("checkoutt", checkapi.Checkout, dbType: DbType.DateTime, direction: ParameterDirection.Input);
 
-            var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.updatecheckApi", parameter, commandType: CommandType.StoredProcedure);
-            return "Checkin: " + checkapi.Checkin + "|| checkout: " + checkapi.Checkout + ", updated!";
+                var result = dbContext.dBConnection.ExecuteAsync("CheckApi_package_api.updatecheckApi", parameter, commandType: CommandType.StoredProcedure);
+                return "Checkin: " + checkapi.Checkin + "|| checkout: " + checkapi.Checkout + ", updated!";
+            }
+            catch (Exception ex)
+            {
+                return (ex.Message);
+            }
         }
     }
 }

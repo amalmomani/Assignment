@@ -29,7 +29,7 @@ namespace Assignment.Controllers
             else return BadRequest();
         }
         [HttpGet]//retrevie all data
-        public ActionResult Dep()
+        public ActionResult Task()
         {
             List<Taskapi> result = null;
             result = this.TaskapiService.getall();
@@ -38,7 +38,7 @@ namespace Assignment.Controllers
             else return BadRequest();
         }
         [HttpGet("{id}")] // retrive data by id
-        public ActionResult Dep(int id)
+        public ActionResult Task(int id)
         {
             Taskapi result = null;
             result = this.TaskapiService.getbyid(id);
